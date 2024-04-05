@@ -8,7 +8,7 @@ for (let i = 1; i < numberOfChats; i++) {
 // this is the signed-in user object
 const authedUser = {
     id: '12',
-    name: "Behnam Azimi",
+    name: "Van Phan",
     username: "bhnmzm",
     online: true,
     lastSeen: "Today",
@@ -50,6 +50,6 @@ const interval = setInterval(() => {
         });
 
         // new message sending time can be dynamic, between 1s and 5s
-    }, randomNumber(1000, 5000))
+    }, randomNumber(5000, 10000))
 
 }, 1500);

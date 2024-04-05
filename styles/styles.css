@@ -1,4 +1,4 @@
-/** Simple Reset - START */
+/** Simple Reset */
 html {
     box-sizing: border-box;
     font-size: 16px;
@@ -24,53 +24,118 @@ img {
     height: auto;
 }
 
-/** Global - START */
+/** Variables */
+:root {
+    --primary-color: #D81B60; /* Deep Pink */
+    --text-color: #333; /* Dark Gray for text */
+    --background-color: #FAFAFA; /* Light Gray for background */
+    --sidebar-bg-color: #FFF; /* White for sidebar background */
+    --sidebar-text-color: #333; /* Dark Gray for sidebar text */
+    --chat-bg-color: #FFF; /* White for chat background */
+}
 
+/** Global Styles */
 body {
     font-family: 'Lato', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     height: 100vh;
     max-height: 100vh;
     overflow: hidden;
 }
 
 #chat-web-app {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-
     display: flex;
     flex-direction: row;
+    height: 100%;
+    width: 100%;
 }
 
+/** Sidebar Styles */
 #chat-web-app .sidebar {
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .14);
-    display: flex;
-    flex-direction: column;
     width: 280px;
-    min-width: 280px;
-    position: relative;
+    background-color: var(--sidebar-bg-color);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.14);
     z-index: 2;
+    overflow-y: auto;
 }
 
-@media screen and (max-width: 564px) {
+#chat-web-app .sidebar .chat-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+#chat-web-app .sidebar .chat-item:hover,
+#chat-web-app .sidebar .chat-item.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/** Chat Box Styles */
+chat-box {
+    flex-grow: 1;
+    background-color: var(--chat-bg-color);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.chat-message.authed-user {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: right;
+}
+
+/** Buttons and Input Fields */
+button, .button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover, .button:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/** Responsive Design */
+@media screen and (max-width: 768px) {
     #chat-web-app .sidebar {
+        width: 100%;
         min-width: 100%;
-        background-color: #fff;
-        z-index: 3;
     }
 
     chat-box {
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 2;
-        background: #fff;
         width: 100%;
+        z-index: 1;
     }
 
-    chat-box:not([hidden]) {
-        z-index: 5;
+    chat-box[hidden] {
+        display: none;
     }
 }
